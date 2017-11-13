@@ -24,6 +24,14 @@ public class PhoneMsg implements Serializable {
 	@Column
 	private String phoneMsg;
 	@Column
+	private int code;
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	@Column
 	private Integer createTime;
 	@Column
 	@CreatedDate
