@@ -36,7 +36,7 @@ public class CompanyController {
 
 	  try {
 		  	int maNum= (int)(Math.random()*10000);
-		     String content="验证码为:"+maNum;
+		     String content="【周边订】验证码为:"+maNum;
 	        SmsSingleSender sender = new SmsSingleSender(1400049697, "fa27dfc23789152ee3499732065ef908");
 			SmsSingleSenderResult senderresult = sender.send(0, "86", phoneNum, content, "", "123");
 			PhoneMsg pm=new PhoneMsg();
