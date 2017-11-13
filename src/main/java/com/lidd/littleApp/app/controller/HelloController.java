@@ -38,8 +38,5 @@ public class HelloController {
 	public String say(@RequestParam(value="id",required=false,defaultValue="0") Integer id) {
 		 return "Id:"+id;
 	}
-	@GetMapping(value="/girl")
-	public List<Girl> girls(){
-		
-	}
+
 }
