@@ -67,6 +67,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	    <dependency>
+	      <groupId>com.qiniu</groupId>
+	      <artifactId>qiniu-java-sdk</artifactId>
+	      <version>7.2.6</version>
+	    </dependency>
 		<dependency>
 		  	<groupId>com.github.qcloudsms</groupId>
 		  	<artifactId>sms</artifactId>

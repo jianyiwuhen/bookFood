@@ -1,12 +1,15 @@
 package com.lidd.littleApp.app.controller;
 
-import java.util.Map;
+import java.util.Calendar;
+
+import javax.crypto.Mac;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +23,8 @@ import com.lidd.littleApp.app.interfaces.PhoneMsgRepository;
 import com.lidd.littleApp.app.interfaces.SellerRepository;
 import com.lidd.littleApp.app.models.PhoneMsg;
 import com.lidd.littleApp.app.models.Result;
+import com.qiniu.util.Auth;
+import com.qiniu.util.StringMap;
 
 
 
@@ -56,5 +61,18 @@ public class CompanyController {
 		return new Result(false,4001,null,null);
 	 }
 	  
+	}
+	
+	@GetMapping(value="/getQiniuToken")
+	public String getToken() {
+		String accessKey = "u2BRDMpkYCBFqZJqUNR1ujyRpTLaHOvHdQZxJHBP";
+		String secretKey = "bEQtUIATFSlB_gXJj2QEpCU8r87ZoXmcQHf8zYF4";
+		String bucket = "feedbook";
+		Auth auth = Auth.create(accessKey, secretKey);
+		StringMap putPolicy = new StringMap();
+		putPolicy.put("returnBody", "{\"key\":\"$(key)\",\"hash\":\"$(etag)\",\"bucket\":\"$(bucket)\",\"fsize\":$(fsize)}");
+		long expireSeconds = 3600;
+		String upToken = auth.uploadToken(bucket, null, expireSeconds, putPolicy);
+        return upToken;
 	}
 }
